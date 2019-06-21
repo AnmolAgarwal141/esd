@@ -1,0 +1,26 @@
+	AREA RESET,DATA,READONLY
+	EXPORT __Vectors
+__Vectors
+	DCD 0X10001000
+	DCD Reset_Handler
+	ALIGN
+	AREA Code_pg,CODE,READONLY
+	ENTRY
+	EXPORT Reset_Handler
+Reset_Handler
+
+	LDR R0,=NUM
+	LDR R1,=RES
+	MOV R2,#8
+back
+	LDRB R4,[R0],#4
+	LSL R5,#4
+	ORR R5,R4
+	SUB R2,#1
+	TEQ R2,#0
+	BNE back
+	STR R5,[R1]
+Stop B Stop
+NUM DCD 0X1,0X2,0X3,0X4,0X5,0X6,0X7,0X8
+	AREA Data_pg,DATA,READWRITE
+RES DCD 0

@@ -1,0 +1,153 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET ,  DATA, READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001000        DCD              0X10001000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008         
+    8 00000008                 AREA             mycode, CODE, READONLY
+    9 00000000                 ENTRY
+   10 00000000                 EXPORT           Reset_Handler
+   11 00000000         
+   12 00000000         Reset_Handler
+   13 00000000 F04F 0001       MOV              R0, #1
+   14 00000004 490B            LDR              R1, =NUM
+   15 00000006 6809            LDR              R1, [R1]
+   16 00000008 F000 F803       BL               FACTO
+   17 0000000C 4B0A            LDR              R3, =FACT
+   18 0000000E 6018            STR              R0, [R3]
+   19 00000010 E7FE    STOP    B                STOP
+   20 00000012         
+   21 00000012 2901    FACTO   CMP              R1, #1
+   22 00000014 D00A            BEQ              EXIT
+   23 00000016 B402            PUSH             {R1}
+   24 00000018 F1A1 0101       SUB              R1, #1
+   25 0000001C B500            PUSH             {LR}
+   26 0000001E F7FF FFF8       BL               FACTO
+   27 00000022 F85D EB04       POP              {LR}
+   28 00000026 BC02            POP              {R1}
+   29 00000028 FB00 F001       MUL              R0, R1
+   30 0000002C         EXIT
+   31 0000002C 4770            BX               LR
+   32 0000002E         
+   33 0000002E 00 00 00000004 
+                       NUM     DCD              0x4
+   34 00000034 00000000 
+              00000000         AREA             mydata, DATA, READWRITE
+   35 00000000 00000000 
+                       FACT    DCD              0
+   36 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\factor
+ial.d -o.\factorial.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\K
+eil\ARM\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=.\factorial.lst D:\R
+n-63-170953262\lab5\factorial.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file D:\Rn-63-170953262\lab5\factorial.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file D:\Rn-63-170953262\lab5\factorial.s
+   Uses
+      At line 2 in file D:\Rn-63-170953262\lab5\factorial.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+EXIT 0000002C
+
+Symbol: EXIT
+   Definitions
+      At line 30 in file D:\Rn-63-170953262\lab5\factorial.s
+   Uses
+      At line 22 in file D:\Rn-63-170953262\lab5\factorial.s
+Comment: EXIT used once
+FACTO 00000012
+
+Symbol: FACTO
+   Definitions
+      At line 21 in file D:\Rn-63-170953262\lab5\factorial.s
+   Uses
+      At line 16 in file D:\Rn-63-170953262\lab5\factorial.s
+      At line 26 in file D:\Rn-63-170953262\lab5\factorial.s
+
+NUM 00000030
+
+Symbol: NUM
+   Definitions
+      At line 33 in file D:\Rn-63-170953262\lab5\factorial.s
+   Uses
+      At line 14 in file D:\Rn-63-170953262\lab5\factorial.s
+Comment: NUM used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 12 in file D:\Rn-63-170953262\lab5\factorial.s
+   Uses
+      At line 5 in file D:\Rn-63-170953262\lab5\factorial.s
+      At line 10 in file D:\Rn-63-170953262\lab5\factorial.s
+
+STOP 00000010
+
+Symbol: STOP
+   Definitions
+      At line 19 in file D:\Rn-63-170953262\lab5\factorial.s
+   Uses
+      At line 19 in file D:\Rn-63-170953262\lab5\factorial.s
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 8 in file D:\Rn-63-170953262\lab5\factorial.s
+   Uses
+      None
+Comment: mycode unused
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+FACT 00000000
+
+Symbol: FACT
+   Definitions
+      At line 35 in file D:\Rn-63-170953262\lab5\factorial.s
+   Uses
+      At line 17 in file D:\Rn-63-170953262\lab5\factorial.s
+Comment: FACT used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 34 in file D:\Rn-63-170953262\lab5\factorial.s
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+343 symbols in table

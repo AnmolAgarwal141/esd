@@ -1,0 +1,35 @@
+	AREA RESET,DATA,READONLY
+	EXPORT __Vectors
+__Vectors
+	DCD 0X10001000
+	DCD Reset_Handler
+	ALIGN
+	AREA Code_pg,CODE,READONLY
+	ENTRY
+	EXPORT Reset_Handler
+Reset_Handler
+
+	LDR R0,=NUM
+	MOV R1,#8
+	MOV R2,#0
+back
+	LDRB R3,[R0],#1
+	BL ascii_hex
+	LSL R2,#4
+	ORR R2,R3
+	SUB R1,#1
+	TEQ R1,#0
+	BNE back
+	LDR R0,=RES
+	STR R2,[R0]
+Stop B Stop
+NUM DCB "123AB678"
+
+ascii_hex
+	CMP R3,#0x41
+	SUBLO R3,#0x30
+	SUBHS R3,#0x37
+	BX LR
+	
+	AREA Data_pg,DATA,READWRITE
+RES DCD 0

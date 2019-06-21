@@ -1,0 +1,1 @@
+secondprog.o: secondprog.s

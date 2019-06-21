@@ -1,0 +1,137 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001000        DCD              0X10001000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 AREA             Code_pg,CODE,READONLY
+    8 00000000                 ENTRY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000         Reset_Handler
+   11 00000000         
+   12 00000000 480A            LDR              R0,=NUM
+   13 00000002 4F0B            LDR              R7,=RES
+   14 00000004 F04F 0300       MOV              R3,#0
+   15 00000008 F04F 0408       MOV              R4,#8
+   16 0000000C 6801            LDR              R1,[R0]
+   17 0000000E         Loop
+   18 0000000E F001 050F       AND              R5,R1,#0X0F
+   19 00000012 EA4F 1111       LSR              R1,#4
+   20 00000016 442B            ADD              R3,R5
+   21 00000018 F1A4 0401       SUB              R4,#1
+   22 0000001C F094 0F00       TEQ              R4,#0
+   23 00000020 D1F5            BNE              Loop
+   24 00000022         
+   25 00000022 603B            STR              R3,[R7]
+   26 00000024 E7FE    STOP    B                STOP
+   27 00000026 00 00 FFAAFFAA 
+                       NUM     DCD              0XFFAAFFAA
+   28 0000002C 00000000 
+              00000000         AREA             Data_pg,DATA,READWRITE
+   29 00000000 00000000 
+                       RES     DCD              0
+                       
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=EvalQues
+.d -oEvalQues.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\AR
+M\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=EvalQues.lst EvalQues.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file EvalQues.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file EvalQues.asm
+   Uses
+      At line 2 in file EvalQues.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Code_pg 00000000
+
+Symbol: Code_pg
+   Definitions
+      At line 7 in file EvalQues.asm
+   Uses
+      None
+Comment: Code_pg unused
+Loop 0000000E
+
+Symbol: Loop
+   Definitions
+      At line 17 in file EvalQues.asm
+   Uses
+      At line 23 in file EvalQues.asm
+Comment: Loop used once
+NUM 00000028
+
+Symbol: NUM
+   Definitions
+      At line 27 in file EvalQues.asm
+   Uses
+      At line 12 in file EvalQues.asm
+Comment: NUM used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 10 in file EvalQues.asm
+   Uses
+      At line 5 in file EvalQues.asm
+      At line 9 in file EvalQues.asm
+
+STOP 00000024
+
+Symbol: STOP
+   Definitions
+      At line 26 in file EvalQues.asm
+   Uses
+      At line 26 in file EvalQues.asm
+Comment: STOP used once
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Data_pg 00000000
+
+Symbol: Data_pg
+   Definitions
+      At line 28 in file EvalQues.asm
+   Uses
+      None
+Comment: Data_pg unused
+RES 00000000
+
+Symbol: RES
+   Definitions
+      At line 29 in file EvalQues.asm
+   Uses
+      At line 13 in file EvalQues.asm
+Comment: RES used once
+2 symbols
+342 symbols in table

@@ -1,0 +1,154 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001000        DCD              0X10001000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008         
+    8 00000008                 AREA             mycode,CODE,READONLY
+    9 00000000                 ENTRY
+   10 00000000                 EXPORT           Reset_Handler
+   11 00000000         Reset_Handler
+   12 00000000 F04F 0129       LDR              R1,=0X29
+   13 00000004 F04F 0256       LDR              R2,=0X56
+   14 00000008 F04F 0398       LDR              R3,=0X98
+   15 0000000C F04F 0412       LDR              R4,=0X12
+   16 00000010 F04F 0599       LDR              R5,=0X99
+   17 00000014 F04F 0615       LDR              R6,=0X15
+   18 00000018 F04F 0721       LDR              R7,=0X21
+   19 0000001C F04F 0830       LDR              R8,=0X30
+   20 00000020 F04F 0922       LDR              R9,=0X22
+   21 00000024 F04F 0A28       LDR              R10,=0X28
+   22 00000028         
+   23 00000028 4810            LDR              R0,=0X10000100 ;stack ptr
+   24 0000002A E920 07FE       STMDB            R0!,{R1-R10}
+   25 0000002E 4681            MOV              R9,R0
+   26 00000030 F100 0024       ADD              R0,#36
+   27 00000034 F04F 0809       MOV              R8,#9       ;parse
+   28 00000038         label1
+   29 00000038 4647            MOV              R7,R8       ;comparision
+   30 0000003A 4601            MOV              R1,R0
+   31 0000003C         label2
+   32 0000003C 6802            LDR              R2,[R0]
+   33 0000003E F851 3D04       LDR              R3,[R1,#-4]!
+   34 00000042 429A            CMP              R2,R3
+   35 00000044 D901            BLS              skip1
+   36 00000046 600A            STR              R2,[R1]
+   37 00000048 6003            STR              R3,[R0]
+   38 0000004A         
+   39 0000004A         skip1
+   40 0000004A F1A7 0701       SUB              R7,#1
+   41 0000004E F097 0F00       TEQ              R7,#0
+   42 00000052 D1F3            BNE              label2
+   43 00000054 F2A0 0004       ADD              R0,#-4
+   44 00000058 F1A8 0801       SUB              R8,#1
+   45 0000005C F098 0F00       TEQ              R8,#0
+   46 00000060 D1EA            BNE              label1
+   47 00000062         
+   48 00000062 4648            MOV              R0,R9
+   49 00000064 E8B0 07FE       LDM              R0!,{R1-R10}
+   50 00000068 E7FE    stop    B                stop
+   51 0000006A         
+   52 0000006A         
+   53 0000006A         
+   54 0000006A         
+   55 0000006A         
+   56 0000006A         
+                       
+              00 00 10000100 
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=Selectio
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+nSort_Dsc.d -oSelectionSort_Dsc.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\In
+clude -IC:\Keil\ARM\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=Selectio
+nSort_Dsc.lst SelectionSort_Dsc.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file SelectionSort_Dsc.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file SelectionSort_Dsc.asm
+   Uses
+      At line 2 in file SelectionSort_Dsc.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 11 in file SelectionSort_Dsc.asm
+   Uses
+      At line 5 in file SelectionSort_Dsc.asm
+      At line 10 in file SelectionSort_Dsc.asm
+
+label1 00000038
+
+Symbol: label1
+   Definitions
+      At line 28 in file SelectionSort_Dsc.asm
+   Uses
+      At line 46 in file SelectionSort_Dsc.asm
+Comment: label1 used once
+label2 0000003C
+
+Symbol: label2
+   Definitions
+      At line 31 in file SelectionSort_Dsc.asm
+   Uses
+      At line 42 in file SelectionSort_Dsc.asm
+Comment: label2 used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 8 in file SelectionSort_Dsc.asm
+   Uses
+      None
+Comment: mycode unused
+skip1 0000004A
+
+Symbol: skip1
+   Definitions
+      At line 39 in file SelectionSort_Dsc.asm
+   Uses
+      At line 35 in file SelectionSort_Dsc.asm
+Comment: skip1 used once
+stop 00000068
+
+Symbol: stop
+   Definitions
+      At line 50 in file SelectionSort_Dsc.asm
+   Uses
+      At line 50 in file SelectionSort_Dsc.asm
+Comment: stop used once
+6 symbols
+341 symbols in table

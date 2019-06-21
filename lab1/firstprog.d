@@ -1,0 +1,1 @@
+firstprog.o: firstprog.s
